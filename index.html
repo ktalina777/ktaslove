@@ -139,13 +139,14 @@
 
       if (index === images.length - 1) {
         phraseEl.textContent = finalPhrase;
-        phraseEl.style-display = "block";
+        phraseEl.style.display = "block";
         index++;
+        showing = "text";
         return;
       }
 
       // mostrar texto
-      phraseEl.textContent = phrases [index];
+      phraseEl.textContent = phrases[index];
       phraseEl.style.display = "block";
       index++;
       showing = "text";
