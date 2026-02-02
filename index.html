@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="icon" type="image/png" href="1.jpg">
   <title>unclick+</title>
 
   <style>
@@ -35,11 +34,12 @@
     }
 
     img {
-      width: 110%;
+      width: 100%;
       max-height: none;
       object-fit: contain;
       border-radius: 16px;
       margin-bottom: 18px;
+      background-color: #C6C5F0;
     }
 
     h1 {
@@ -58,7 +58,7 @@
 
 <body onclick="changeVibe()">
   <div class="container">
-  <img id="vibeImage" src="1.jpg" alt="vibe image" />
+  <img id="vibeImage" alt="vibe image" />
   <h1 id="phrase">FELIZ 3er ANIVERSARIO MYLOVE</h1>
 </div>
 
@@ -83,6 +83,7 @@
     "Te amo Facundo Ezequiel Garcia! <3",
     "Nos deseo más momentos felices como estos",
     "por siempre y para siempre mi amor para miamor",
+    "ILUVU<3",
   ];
 
   //agrega tus imágenes(las referencias/urls) aquí
@@ -108,21 +109,27 @@
     "18.jpg",
     "19.jpg",
   ];
+  
+  const finalPhrase = "Gracias por estos 1095 días, ojalá toda una vida juntos, te amo eternamente";
 
   const phraseEl = document.getElementById("phrase");
   const imageEl = document.getElementById("vibeImage");
 
   // ESTADO INICIAL ESTÁ MOSTRANDO EL TEXTO
   let showing = "text";
+  let index = 0;
+  
   imageEl.style.display = "none";
 
   function changeVibe() {
+    if (index >= images.length) return;
+    
     if (showing === "text") {
       // ocultar el texto
       phraseEl.style.display = "none";
 
       // mostrar imagen
-      imageEl.src = images[Math.floor(Math.random() * images.length)];
+      imageEl.src = images[index];
       imageEl.style.display = "block";
 
       showing = "image";
@@ -130,11 +137,17 @@
       // ocultar imagen
       imageEl.style.display = "none";
 
-      // mostrar texto
-      phraseEl.textContent =
-        phrases[Math.floor(Math.random() * phrases.length)];
-      phraseEl.style.display = "block";
+      if (index === images.length - 1) {
+        phraseEl.textContent = finalPhrase;
+        phraseEl.style-display = "block";
+        index++;
+        return;
+      }
 
+      // mostrar texto
+      phraseEl.textContent = phrases [index];
+      phraseEl.style.display = "block";
+      index++;
       showing = "text";
     }
   }
