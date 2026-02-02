@@ -62,7 +62,10 @@
   <h1 id="phrase">FELIZ 3er ANIVERSARIO MYLOVE🤍</h1>
 </div>
 
-
+<audio id="bgMusic" loop>
+  <source src="amor.mp3" type="audio/mpeg">
+</audio>
+  
 <script>
   //agrega tus frases aquí
   const phrases = [
@@ -115,14 +118,21 @@
 
   const phraseEl = document.getElementById("phrase");
   const imageEl = document.getElementById("vibeImage");
+  const music = document.getElementById("bgMusic");
 
   // ESTADO INICIAL ESTÁ MOSTRANDO EL TEXTO
   let showing = "text";
   let index = 0;
+  let musicStarted = false;
   
   imageEl.style.display = "none";
 
   function changeVibe() {
+    if (!musicStarted) {
+      music.play().catch(() => {});
+      musicStarted = true;
+    }
+    
     if (index >= images.length) return;
     
     if (showing === "text") {
